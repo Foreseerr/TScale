@@ -5,9 +5,9 @@ TScale async distributed training can train small and medium sized models with h
 Scaling efficiency depends on training stage - at start adding more nodes does not speed up progress. As train progresses scaling becomes closer to linear.
 
 Model quality is comparable with sync trading. Results for 1.5B model trained on fineweb with several hosts are below. Model dimensions are e1536 h12 d60 (state width 1536, 12 heads per layer, 60 layers). Model was trained for 130k batches, each batch 480x1024 token fragments. Validation loss and hellaswag scores are computed for average model over the last 5k batches at each point. No learning rate reduction was used.
-![](img/fed_loss.png)
+![](../img/fed_loss.png)
 
-![](img/fed_hellaswag.png)
+![](../img/fed_hellaswag.png)
 
 This run required about 2 days and used up to 5 hosts concurrently. All hosts had same 8x 4090 config however they had different performance due to unknonwn reasons (parallel load? TDP limit?). Different number of hosts along the run was caused by spot instances availability on runpod and vast. Batch size 480x 1024. Average rent cost of single host was ~$3.2 per hour,  average performance of single host was 800 batches/hour. Total GPU rent cost of this experiment ~$500.
 
@@ -35,7 +35,7 @@ Each worker:
     WorkerMomentumK *= weightK # required for better convergence, slows down training
 ```
 How each worker model WorkerK is update during each iteration:
-![](img/fed_iteration.png)
+![](../img/fed_iteration.png)
 
 To hide network exchange latency actual code performs all send receive operations and training concurrently. So DeltaK is taken from previous iteration. For this mode to converge FedWeightScale must be  no more then 0.5. For synchronous update FedWeightScale can be 1.
 
@@ -43,7 +43,7 @@ Actual model update on each worker adds not only current gradient but also momen
 
 # How to run distributed train with TScale
 
-Async training consists of [data server](code/gpt/data_server) providing training data, [central host](code/gpt/fed_center) aggregating updates and multiple [workers](code/gpt/fed_worker) performing computation. Data server is configured with [data script](doc/data_script.md). Central host configuration consists of [training script commands](doc/train_script.md) with the few additional options. Fed worker parameters are specified in it's command line.
+Async training consists of [data server](code/gpt/data_server) providing training data, [central host](../code/gpt/fed_center) aggregating updates and multiple [workers](../code/gpt/fed_worker) performing computation. Data server is configured with [data script](data_script.md). Central host configuration consists of [training script commands](doc/train_script.md) with the few additional options. Fed worker parameters are specified in it's command line.
 
 ## fed_center script
 
@@ -82,4 +82,4 @@ Set worker name, this name will be displayed in fed_center statistics (availble 
 
 ## fed_worker docker
 
-Sample fed woker [dockerfile](Dockerfile) is provided. Fed center ip address is expected at FED_CENTER env variable.
+Sample fed woker [dockerfile](../Dockerfile) is provided. Fed center ip address is expected at FED_CENTER env variable.
