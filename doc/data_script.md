@@ -13,10 +13,10 @@ OPERATION(12, 'asdf')
 Fraction of dataset used for test, default is 0.05
 
 * **USE_PPM = true**
-If USE_PPM is set [PPM](doc/ppm.md) is enabled. Default is no.
+If USE_PPM is set [PPM](ppm.md) is enabled. Default is no.
 
 * **USE_LMATCH = true**
-If USE_LMATCH is set [longest match search](doc/lm_search.md) is enabled. Default is no.
+If USE_LMATCH is set [longest match search](lm_search.md) is enabled. Default is no.
 
 ## Model operations
 
@@ -38,7 +38,7 @@ N - token count, used with load_tokenized_* functions. N = 50257 for gpt2 tokeni
 N - token id of doc delimiting token. Can be used with load_tokenized_* functions.
 
 * **load_tokenizer('filename.bin')**
-Load tokenizer from binary file. [Tokenizer](doc/tokenizer) binary file can be created with [gpt_tokenizer](code/gpt/tokenizer).
+Load tokenizer from binary file. [Tokenizer](tokenizer) binary file can be created with [gpt_tokenizer](../code/gpt/tokenizer).
 
 * **make_byte_tokenizer()**
 Create byte tokenizer. Generates one token per bytes, uses 256 different tokens, one for each byte value. 
@@ -49,10 +49,10 @@ Create byte tokenizer. Generates one token per bytes, uses 256 different tokens,
 Loads single text file. Creates tokenizer out of used bytes in this text file. Splits file into two parts, first part is used  for train, second for test. 
 
 * **connect_data_server('11.22.33.97')**
-Connect to data server located on host with specified ip address. To run data server compile and launch [data_server](code/gpt/data_server) with appropriate config.
+Connect to data server located on host with specified ip address. To run data server compile and launch [data_server](../code/gpt/data_server) with appropriate config.
 
 * **connect_http_data_server('11.22.33.97')**
-Connect to data server located on specified ip address over http. Example of such [server](code/gpt/http_data_server) written in python.
+Connect to data server located on specified ip address over http. Example of such [server](../code/gpt/http_data_server) written in python.
 
 * **load_tokenized_train('train.bin')**
 Load tokenized dataset and add it to train set. Argument specifies binary file with sequence of tokens. Each token is stored as ui16.
@@ -67,7 +67,7 @@ Load text file, tokenize it with selected tokenizer and add to dataset. Code ass
 Load all files in the specified folder and add them to dataset. Each file is considered a text document.
 
 * **load_docset('cultura/2.bin')**
-Load document pack and add each document to dataset. Document packs can be created with [hf import](pysrc/hf_import_text). Document pack is  a binary file consisting of serialized documents. Each document has 4 byte header with document length followed by utf8 encoded text of the document.
+Load document pack and add each document to dataset. Document packs can be created with [hf import](../pysrc/hf_import_text). Document pack is  a binary file consisting of serialized documents. Each document has 4 byte header with document length followed by utf8 encoded text of the document.
 
 * **index_docset_folder('cultura')**
 Tokenize and create PPM and LM features if needed for all document packs in the specified folder. Stores result to index.bin and index_hdr.bin files. Can be used to preprocess large datasets once and then use them to train models.
@@ -83,7 +83,7 @@ Specify location of longest match index files.
 
 ## Script examples
 
-There are few example data scripts in [cfg folder](cfg). To load data script from file run gpt_train with '-d data_script.cfg' argument. Shortest valid data script:
+There are few example data scripts in [cfg folder](../cfg). To load data script from file run gpt_train with '-d data_script.cfg' argument. Shortest valid data script:
 
 ```
 make_char_dataset('shakespear.txt')
