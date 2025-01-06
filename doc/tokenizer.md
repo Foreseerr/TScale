@@ -1,6 +1,6 @@
 ﻿# Tokenizer
 
-[Tokenizers](doc/tokenizer.md) are created by [gpt_tokenizer](/code/gpt/tokenizer).
+Tokenizers are created by [gpt_tokenizer](/code/gpt/tokenizer).
 
 Code uses custom text tokenizers. Purpose of these experimental tokenizers is to optimize logloss on test, not to use as few tokens as possible. There are several tokenizers:
 - **TK_CHAR**
