@@ -4,7 +4,7 @@ TScale async distributed training can train small and medium sized models with h
 
 Scaling efficiency depends on training stage - at start adding more nodes does not speed up progress. As train progresses scaling becomes closer to linear.
 
-Model quality is comparable with sync trading. Results for 1.5B model trained on fineweb with several hosts are below. Model dimensions are e1536 h12 d60 (state width 1536, 12 heads per layer, 60 layers). Model was trained for 130k batches, each batch 480x1024 token fragments. Validation loss and hellaswag scores are computed for average model over the last 5k batches at each point. No learning rate reduction was used.
+Model quality is comparable with sync trading. Results for 1.5B model trained on fineweb with several hosts are below. Model dimensions are e1536 h12 d60 (state width 1536, 12 heads per layer, 60 layers). Model was trained for 130k batches, each batch 480x1024 token fragments. Validation loss and hellaswag scores are computed for average model over the last 5k batches at each point. Learning rate is constant after short warmup.
 ![](../img/fed_loss.png)
 
 ![](../img/fed_hellaswag.png)
