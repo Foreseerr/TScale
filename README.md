@@ -34,7 +34,7 @@ By using inexpensive GPUs and async distributed mode TScale trains LLMs fast and
 
 [Training 1T (!) model in your kitchen](doc/1T_model.md)
 
-[Distributed train](doc/fed.md)
+[Async distributed train](doc/fed.md)
 
 [Notes on model and compute precision](doc/precision.md)
 
