@@ -71,21 +71,21 @@ To compile TScale for linux you need to compile fo.cpp, generate CMakeLists.txt 
 
 # Get train data
 
-Examples in the code use [enwik9](https://mattmahoney.net/dc/textdata.html) dataset and its truncacted version enwik8. Also Hugging Face hosted datasets openwebtext, ontocord/CulturaY, danasone/librusec are used in examples. To import them use [hf_import](/hf_import/import.py).
+Examples in the code use [enwik9](https://mattmahoney.net/dc/textdata.html) dataset and its truncacted version enwik8. Also Hugging Face hosted datasets openwebtext, ontocord/CulturaY, danasone/librusec are used in examples. To import them use [hf_import](/pysrc/hf_import/import.py).
 
 # Train model
 
-[gpt_train](/code/gpt/train) is used to train a model. It is controlled by the [train script](/doc/train_script.md). Default train script is stored in [main_gpt.cpp](/code/gpt/train/main_gpt.cpp) CONFIG variable. To load train script from file run gpt_train with '-c script.txt' argument. 
+[gpt_train](/code/gpt/train) is used to train a model. It is controlled by the [train script](/doc/train_script.md) and [data script](/doc/data_script.md). Default scripts are stored in [main_gpt.cpp](/code/gpt/train/main_gpt.cpp). To load train script from file run gpt_train with '-d data_script.txt -s train_script.txt' arguments.
 
 ## quick run
 
-Compile gpt-train. Run it in the root directory with [test config](/test.cfg):
+Compile gpt-train. Run it in the root directory:
 
 ```bash
 ~/TScale$ ./make.dir/gpt-train
 ```
  
-## distributed run
+## sync distributed run
 
 Currently training can be distributed only among pow2 number of worker hosts. 
 
