@@ -40,6 +40,7 @@ TScale uses optimized fp8 attention kernels.
 |--|--|
 |forward|220|
 |backward (gradients)|166|
+
 Gradient kernels work slower because they compute result in two passes. In first pass they compute maximum gradient per token to be able to use e4m3 precision for result computation. By using careful dynamic range analysis it might be possible to estimate dynamic range without explicit computation, by now it remains work TBD.
 
 ## Model training performance
