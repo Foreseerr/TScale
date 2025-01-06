@@ -5,7 +5,7 @@ Setup for this train run tries to reproduce the one used in [H3 paper (table 3)]
 Open Web Text dataset tokenized with gpt2 tokenizer was taken from [nanoGPT](https://github.com/karpathy/nanoGPT/tree/master/data/openwebtext). Model dimensions are e512 h3 d50 (state width 512, 3 heads per layer, 50 layers). Model was trained for 510k batches, each batch 96x1024 token fragments.
 
 Train/val loss graphs:
-![Nice train loss graph](img/tl125M.png)
+![Nice train loss graph](../img/tl125M.png)
 
 Graphs are smooth since train and test losses here are computed over fixed fragment set. No moving average or the like is applied.
 
