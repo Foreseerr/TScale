@@ -19,7 +19,7 @@ Computing attention and especially attention gradients with int8 is surprisingly
 
 ## Precision loss for int8/fp8 precision
 
-Computing forward/backward passes with reduced precision leads to imprecise results. To measure how much precision is lost TScale code contains reference fp32 cpu implementation of forward/backward passes, [gpt_cpu](code/gpt/gpt_cpu.cpp). Table below summarizes precision loss in basepoints for different matmul/attention precision.
+Computing forward/backward passes with reduced precision leads to imprecise results. To measure how much precision is lost TScale code contains reference fp32 cpu implementation of forward/backward passes, [gpt_cpu](../code/gpt/gpt_cpu.cpp). Table below summarizes precision loss in basepoints for different matmul/attention precision.
 
 |Model params|State|Matmul|Attention|Forward precision|Backward+Forward precision|
 |-----------------|------|---------|-----------|----------------------|-------|
