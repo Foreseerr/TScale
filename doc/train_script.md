@@ -1,6 +1,6 @@
 ﻿# Train Script
 
-Training model with [train_gpt](code/gpt/train) or [fed](doc/fed.md) is controlled by the script written on DSL. Script consists of variable assignments and operations. Script looks like this:
+Training model with [train_gpt](/code/gpt/train) or [fed](/doc/fed.md) is controlled by the script written on DSL. Script consists of variable assignments and operations. Script looks like this:
 
 ```
 VARIABLE = 100 # comment
@@ -65,7 +65,7 @@ Perform sync distributed model train. List of worker IP address is loaded from t
 Load model from Ncheckpoint iteration. If Navrg is non zero then load all models in [Ncheckpoint - Navrg; Ncheckpoint] range and average them. Sample random test batches, report average score over all sampled batches.
 
 * **compute_choice_score('hellaswag_val.bin')**
-Compute mmlu-like score, requires precomputed binary file with test queries. Expects query file in llm.c format, [import script](pysrc/hellaswag).
+Compute mmlu-like score, requires precomputed binary file with test queries. Expects query file in llm.c format, [import script](/pysrc/hellaswag).
 
 * **check_cpu_gpu_match()**
 Compute discrepancy between reference fp32 cpu implementation and gpu implementation.
