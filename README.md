@@ -14,7 +14,7 @@ TScale is designed to run on consumer hardware. To achive best results it featur
 
 # Distributed training of 1.5B model on consumer GPU
 
-By using inexpensive GPUs and async distributed mode TScale trains LLMs fast and affordable. Log loss for the 1.5B model trained on fineweb-edu for 2 days and $500 on several spot instance with 4090:
+By using inexpensive GPUs and async distributed mode TScale trains LLMs fast and affordable. Log loss for the 1.5B model trained on fineweb-edu for 2 days and $500 on several spot instances with 4090:
 ![Nice train loss graph](/img/fed_hellaswag.png)
 
 # Training your own 1T model at home
