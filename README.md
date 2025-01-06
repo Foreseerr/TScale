@@ -14,24 +14,34 @@ TScale is designed to run on consumer hardware. To achive best results it featur
 
 # Distributed training of 1.5B model on consumer GPU
 
-By using inexpensive GPUs and async distributed mode TScale trains LLMs fast and times cheaper. Here is the train run of 1.5B model trained with several hosts connected over regular internet. On the X axis is money spent on hw rent, on Y axis achieved logloss. Second graph is [llm.c trained on rented h100](https://github.com/karpathy/llm.c/discussions/677).
- Graph with cost on X axis and logloss on Y axis
+By using inexpensive GPUs and async distributed mode TScale trains LLMs fast and affordable. Log loss for the 1.5B model trained on fineweb-edu for 2 days and $500 on several spot instance with 4090:
+![Nice train loss graph](/img/fed_hellaswag.png)
 
 # Training your own 1T model at home
 
-1T model size sounds beyond reach for most people and even organisations. However if we consider creative ways to count model size then there is nothing impossible. In this case we build a model with 1T index which we lookup for every token to make prediction with much smaller model. In terms of logloss/perplexity this construction easily achieves stellar results. Index for fineweb-edu occupies about 1T of disk space. Training run of XX model with this ~1T index achieves **x10** perplexity reduction and looks like this:
+1T model size sounds beyond reach for most people and even organisations. However if we consider creative ways to count model size then there is nothing impossible. In this case we build a model with 1T index which we lookup for every token to make prediction with much smaller model. In terms of logloss/perplexity this construction easily achieves stellar results. Index for fineweb-edu occupies about 1T of disk space. Training run of 125M model with this ~1T index achieves **x8** perplexity reduction:
+
+|Model|Perplexity|
+|-----|-|
+|125M |19.02|
+|125M + 1T index|2.28|
 
 # Read more
 
 [Training 125M model](doc/125M_model.md)
+
 [Training 1.5B model](doc/1.5B_model.md)
+
 [Training 1T (!) model in your kitchen](doc/1T_model.md)
+
 [Distributed train](doc/fed.md)
 
 [Notes on model and compute precision](doc/precision.md)
 
 [TScale transformer model](doc/model.md)
+
 [Data indexing](doc/lm_search.md)
+
 [Tokenizer](doc/tokenizer.md)
 
 # Build
@@ -41,22 +51,22 @@ To build the the code CUDA v12.3 and C++ compiler are required, msvc for windows
 ## Windows
 
 ```bash
-D:\3lin>fo.exe code sln
+D:\TScale>fo.exe code sln
 ```
 
-Then open code.sln from d:\3lin\sln\code.sln.
+Then open code.sln from d:\TScale\sln\code.sln.
 
 ## Linux
 
-To compile 3lin for linux you need to compile fo.cpp, generate CMakeLists.txt file, run cmake, run make.
+To compile TScale for linux you need to compile fo.cpp, generate CMakeLists.txt file, run cmake, run make.
 
 ```bash
-~/3lin/fo$ clang++17 fo.cpp -o fo
-~/3lin/fo$ cd ..
-~/3lin$ ./fo/fo code make.dir
-~/3lin$ cd make.dir
-~/3lin/make.dir$ cmake -D CMAKE_BUILD_TYPE=RelWithDebInfo .
-~/3lin/make.dir$ make
+~/TScale/fo$ clang++17 fo.cpp -o fo
+~/TScale/fo$ cd ..
+~/TScale$ ./fo/fo code make.dir
+~/TScale$ cd make.dir
+~/TScale/make.dir$ cmake -D CMAKE_BUILD_TYPE=RelWithDebInfo .
+~/TScale/make.dir$ make
 ```
 
 # Get train data
@@ -72,7 +82,7 @@ Examples in the code use [enwik9](https://mattmahoney.net/dc/textdata.html) data
 Compile gpt-train. Run it in the root directory with [test config](/test.cfg):
 
 ```bash
-~/3lin$ ./make.dir/gpt-train -c test.cfg
+~/TScale$ ./make.dir/gpt-train
 ```
  
 ## distributed run
