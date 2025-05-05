@@ -61,7 +61,7 @@ Then open code.sln from d:\TScale\sln\code.sln.
 To compile TScale for linux you need to compile fo.cpp, generate CMakeLists.txt file, run cmake, run make.
 
 ```bash
-~/TScale/fo$ clang++17 fo.cpp -o fo
+~/TScale/fo$ clang++-18 fo.cpp -o fo
 ~/TScale/fo$ cd ..
 ~/TScale$ ./fo/fo code make.dir
 ~/TScale$ cd make.dir
